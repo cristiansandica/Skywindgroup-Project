@@ -1,0 +1,175 @@
+:root {
+    --clr-neutral-900: hsl(207, 19%, 9%);
+    --clr-neutral-100: hsl(0, 0%, 100%);
+    --clr-accent-400: hsl(142, 90%, 61%);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.body-container {
+    height: 100vh;
+    place-items: center;
+    line-height: 1.6;
+    font-family: sans-serif;
+}
+
+
+// IN CASE USER CANNOT FIND ANY CARDS, HERE IS THE ERROR
+.error__container {
+    display: flex;
+    justify-content: center;
+    padding-top: 5em;
+}
+
+// CARD STYLING
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.card {
+    color: var(--clr-neutral-100);
+    padding: 8rem 0 0; //top, sides, bottom
+    max-width: 35ch;
+    padding: 2rem 0 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+    }
+}
+
+.card-content {
+    --padding: 1em;
+    padding: var(--padding);
+    background: linear-gradient(hsl(0 0% 0% / 0),
+            hsl(20 0% 0% / 0.3) 20%,
+            hsl(0 0% 0% / 1));
+}
+
+
+.card-title {
+    position: relative;
+    bottom: 10px;
+    width: max-content; // so that the card-title::after line can follow the title
+}
+
+.card-title::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    left: calc(var(--padding)* -1);
+    bottom: 0;
+    width: calc(100% + var(--padding));
+    background: var(--clr-accent-400);
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms ease;
+}
+
+.card:hover .card-title::after {
+    transform: scaleX(1);
+}
+
+.card-body {
+    color: rgb(255 255 255 / 0.85)
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.button {
+    cursor: pointer;
+    font-size: 10px;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--clr-neutral-900);
+    background-color: var(--clr-accent-400);
+    padding: 0.5em 1.5em;
+    border-radius: 0.25rem;
+}
+
+.card-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.background-image-left {
+    top: 100%;
+    position: absolute;
+    width: 70%;
+    z-index: -4;
+}
+
+.rating-red {
+    color: red;
+}
+
+.rating-orange {
+    color: yellow;
+}
+
+.rating-green {
+    color: green;
+}
+
+
+.button:hover,
+.button:focus {
+    background-color: var(--clr-neutral-100);
+
+}
+
+
+
+// FORM STYLING
+.form {
+    display: flex;
+    justify-content: center;
+    font-size: 0px;
+    padding-top: 20px;
+    position: relative;
+    z-index: 1;
+
+    input,
+    select {
+        background: #222;
+        background: linear-gradient(#333, #222);
+        border: 1px solid #444;
+        border-radius: 5px 5px 5px 5px;
+        box-shadow: 0 2px 0 #000;
+        color: #888;
+        display: block;
+        float: left;
+        font-family: 'Cabin', helvetica, arial, sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        height: 40px;
+        margin: 0;
+        padding: 0 10px;
+        text-shadow: 0 -1px 0 #000;
+        width: 200px;
+    }
+
+    .form__input__select {
+        margin-left: 2px;
+    }
+
+}
