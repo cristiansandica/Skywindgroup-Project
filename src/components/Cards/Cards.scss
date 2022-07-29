@@ -11,14 +11,14 @@
 }
 
 .body-container {
-    height: 100vh;
+    height: 50vh;
     place-items: center;
     line-height: 1.6;
     font-family: sans-serif;
 }
 
 
-// IN CASE USER CANNOT FIND ANY CARDS, HERE IS THE ERROR
+// IN CASE USER CANNOT FIND ANY CARDS, HERE IS THE ERROR MESSAGE
 .error__container {
     display: flex;
     justify-content: center;
@@ -92,17 +92,54 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 15px;
+
+    .price {
+        font-size: 30px;
+    }
+}
+
+.cart-total-price {
+    display:flex;
+    justify-content: center;
+    padding-top: 20px;
 }
 
 .button {
     cursor: pointer;
-    font-size: 10px;
+    font-size: 12px;
     display: inline-block;
     text-decoration: none;
     color: var(--clr-neutral-900);
     background-color: var(--clr-accent-400);
     padding: 0.5em 1.5em;
     border-radius: 0.25rem;
+    width: 50%;
+    height: 3.5em;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart {
+    a {
+        text-decoration: none;
+        text-transform: uppercase;
+        color: white;
+    }
+
+    i {
+        color: green;
+        padding-top: 20px;
+        text-transform: uppercase;
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
 }
 
 .card-text {
