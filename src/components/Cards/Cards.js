@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import Swal from "sweetalert2";
 import withReactContent from 'sweetalert2-react-content';
 
+
 // Components
 import DetailedCard from './DetailedCard/DetailedCard';
 
@@ -19,18 +20,18 @@ import DetailedCard from './DetailedCard/DetailedCard';
 
 const ReactSwal = withReactContent(Swal);
 
-const Cards = (props) => {
+const Cards = ({ gameData, handleAddGameCart }) => {
     const [gamesData, setGamesData] = useState([]);
-
+    const [gameGenres, setGameGenres] = useState([])
 
     const [searchField, setSearchField] = useState('');
 
 
-
     // taking the props from parent component
     useEffect(() => {
-        setGamesData(props.gameData);
-    }, [props.gameData]);
+        setGamesData(gameData);
+        setGameGenres(gameData)
+    }, [gameData]);
 
 
     // functionality for searching by name
@@ -64,10 +65,12 @@ const Cards = (props) => {
 
     }
 
+
     const handleCategories = (e) => {
+        const currentGenres = [...gameGenres];
         const currentCategory = e.target.value;
 
-        let filteredData = props.gameData.filter(item => item.genre === currentCategory);
+        let filteredData = currentGenres.filter(item => item.genre === currentCategory);
 
         setGamesData(filteredData);
 
@@ -90,22 +93,25 @@ const Cards = (props) => {
 
     return (
         <div className="body-container">
-            <div className='form'>
-                <input onChange={(e) => setSearchField(e.target.value)} placeholder="Search..." type="search" className='search__input' />
-                <select onChange={handleSortCharacters} type="select" className='form__input__select' >
-                    <option value="">Filter Games</option>
-                    <option value="asc">A-z</option>
-                    <option value="desc">z-A</option>
-                    <option value="ratingAsc">Biggest Rating</option>
-                    <option value="ratingDesc">Lowest Rating</option>
-                </select>
-                <select onChange={handleCategories} type="select" className='form__input__select' >
-                    <option value="">Sort by genre</option>
-                    {/* list of genres + removing the duplicates  */}
-                    {Array.from(new Set(props.gameData.map(item => item.genre))).map((genre, index) => {
-                        return <option key={index} value={genre}>{genre}</option>
-                    })}
-                </select>
+            <div className='header-container'>
+                <div className='form'>
+                    <input onChange={(e) => setSearchField(e.target.value)} placeholder="Search..." type="search" className='search__input' />
+                    <select onChange={handleSortCharacters} type="select" className='form__input__select' >
+                        <option value="">Filter Games</option>
+                        <option value="asc">A-z</option>
+                        <option value="desc">z-A</option>
+                        <option value="ratingAsc">Biggest Rating</option>
+                        <option value="ratingDesc">Lowest Rating</option>
+                    </select>
+                    <select onChange={handleCategories} type="select" className='form__input__select' >
+                        <option value="">Sort by genre</option>
+                        {/* list of genres + removing the duplicates  */}
+                        {Array.from(new Set(gameGenres.map(item => item.genre))).map((genre, index) => {
+                            return <option key={index} value={genre}>{genre}</option>
+                        })}
+                    </select>
+                </div>
+
             </div>
 
             <div className='card-container'>
@@ -131,8 +137,17 @@ const Cards = (props) => {
                                 {item.rating ? <h6 className={`rating ${rating}`}>Rating: {item.rating}%</h6> : <h6>Not released</h6>}
                             </div>
                             <div className='card-footer'>
-                                <h6>Genre: {item.genre}</h6>
+                                <div className='genre'>
+                                    <h6>Genre: {item.genre}</h6>
+                                </div>
+                                <div className='price'>
+                                    <h6>€ {item.price}</h6>
+                                </div>
+
+                            </div>
+                            <div className='buttons'>
                                 <button onClick={() => detailedCard(item)} className='button'>Learn More</button>
+                                <button onClick={() => handleAddGameCart(item)} className='button'>Add to Cart</button>
                             </div>
                         </div>
                     </div>

@@ -18,6 +18,35 @@
     //     margin-bottom: 16px;
 
     // }
+    .header-container {
+        display: flex;
+        align-items: center;
+
+        a {
+            align-items: center;
+            text-decoration: none;
+            color: white;
+
+            .header-title {
+                display: flex;
+                align-items: center;
+
+            }
+        }
+
+        a {
+            .cart {
+                display: flex;
+                justify-content: end;
+
+                svg {
+                    font-size: 40px;
+                }
+            }
+
+        }
+
+    }
 
     img {
         animation: updown 3s linear infinite;
