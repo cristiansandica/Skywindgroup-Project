@@ -1,5 +1,21 @@
+export interface IGameDetail {
+    id: number;
+    name: string;
+    image: string;
+    developer: string;
+    publisher: string;
+    alltimepeak: number | "";
+    rating: number | "";
+    genre: string;
+    release: number | string;
+    price: number;
+}
+interface IData {
+    gameDetails: IGameDetail[];
+}
 
-const data = {
+
+export const data: IData = {
     gameDetails: [
         {
             id: 1,
@@ -244,5 +260,3 @@ const data = {
         }
     ]
 }
-
-export default data;

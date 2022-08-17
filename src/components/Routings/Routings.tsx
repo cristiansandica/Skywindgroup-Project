@@ -1,9 +1,21 @@
+// packages
 import React from "react";
-import Cart from "../Cart/Cart";
 import { Routes, Route } from 'react-router';
-import Cards from "../Cards/Cards";
 
-const Routings = ({ gameData, cartItems, handleAddGameCart }) => {
+// components
+import Cards from "../Cards/Cards";
+import Cart from "../Cart/Cart";
+
+// data, interface
+import { IGameDetail } from "../Data/Data";
+
+interface IProps {
+    gameData: IGameDetail[];
+    cartItems: IGameDetail[];
+    handleAddGameCart: (handleAddGameCart: IGameDetail) => void;
+}
+
+const Routings: React.FC<IProps> = ({ gameData, cartItems, handleAddGameCart }) => {
     return (
         <div>
             <Routes>
@@ -14,7 +26,7 @@ const Routings = ({ gameData, cartItems, handleAddGameCart }) => {
 
                 <Route
                     path='/cart'
-                    element={<Cart cartItems={cartItems} handleAddGameCart={handleAddGameCart} />} />
+                    element={<Cart cartItems={cartItems} />} />
             </Routes>
         </div>
     )

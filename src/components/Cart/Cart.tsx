@@ -1,9 +1,14 @@
 import React from "react";
 import "./Cart.scss";
 import colorSharp from '../../assets/img/color-sharp.png';
+import { IGameDetail } from "../Data/Data";
 
 
-const Cart = ({ cartItems }) => {
+interface IProps {
+    cartItems: IGameDetail[];
+}
+
+const Cart: React.FC<IProps> = ({ cartItems }) => {
 
     const totalPrice = cartItems.reduce((price, item) =>
         price + item.price, 0

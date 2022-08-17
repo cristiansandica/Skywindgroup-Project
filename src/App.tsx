@@ -1,8 +1,8 @@
 // style
 import './App.scss';
 
-// data
-import data from './components/Data/Data';
+// data, interface
+import { data, IGameDetail } from './components/Data/Data';
 
 // packages
 import React, { useEffect, useState } from 'react';
@@ -14,25 +14,24 @@ import Routings from './components/Routings/Routings';
 import { addGames } from './features/gameSlice';
 
 
-const App = () => {
+function App() {
 
   const { gameDetails } = data;
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<IGameDetail[]>([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(addGames(gameDetails));
-  }, [dispatch, gameDetails])
+  }, [gameDetails])
 
-  const handleAddGameCart = (product) => {
-    const productExist = cartItems.find(item => item.id === product.id)
+  const handleAddGameCart = (product: IGameDetail) => {
+    const productExist = cartItems.find((item: IGameDetail) => item.id === product.id)
     if (productExist) {
-      setCartItems(cartItems.map(item => item.id === product.id ? { ...productExist, quantity: productExist.quantity + 1 } : item))
+      setCartItems(cartItems.map((item: IGameDetail) => item.id === product.id ? { ...productExist } : item))
     }
     else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }])
+      setCartItems([...cartItems, { ...product }])
     }
-    console.log(productExist)
   }
 
 
